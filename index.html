@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brock Group · Homepage concept</title>
+  <meta name="description" content="Homepage concept for Brock Group. Industrial services across North America.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #001B74;
+      --navy-2: #001456;
+      --red: #C20019;
+      --ink: #172033;
+      --muted: #5c677a;
+      --line: #e3e8f2;
+      --wash: #f4f7fb;
+      --white: #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: Poppins, sans-serif; color: var(--ink); background: var(--white); line-height: 1.55; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font-family: inherit; }
+    :focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+    .skip { position: absolute; left: 12px; top: -40px; background: var(--navy); color: white; padding: 8px 12px; z-index: 30; }
+    .skip:focus { top: 12px; }
+    .wrap { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+    h1, h2, h3 { font-weight: 600; letter-spacing: -0.03em; line-height: 1.15; }
+    .eyebrow { color: var(--red); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 48px; padding: 0 18px; font-weight: 600; font-size: 14px;
+      border: 1px solid transparent; cursor: pointer; background: transparent;
+    }
+    .btn-red { background: var(--red); color: white; }
+    .btn-red:hover { background: #9d0014; }
+    .btn-white { background: white; color: var(--navy); }
+    .btn-white:hover { background: var(--wash); }
+    .btn-line { border-color: white; color: white; }
+    .btn-line:hover { background: rgba(255,255,255,0.1); }
+    .btn-navy { background: var(--navy); color: white; }
+    .btn-navy:hover { background: var(--navy-2); }
+
+    .top { position: sticky; top: 0; z-index: 20; background: white; box-shadow: 0 1px 0 var(--line); }
+    .util { background: var(--navy); color: rgba(255,255,255,0.88); font-size: 12px; }
+    .util .wrap { display: flex; justify-content: flex-end; gap: 18px; min-height: 36px; align-items: center; flex-wrap: wrap; }
+    .util a:hover { color: white; }
+    .nav { display: flex; align-items: center; gap: 22px; min-height: 78px; }
+    .brand img { height: 40px; width: auto; }
+    .nav ul { display: flex; gap: 16px; list-style: none; margin-left: auto; flex-wrap: wrap; justify-content: flex-end; }
+    .nav a { font-size: 13px; font-weight: 500; color: var(--navy); }
+    .nav a:hover { color: var(--red); }
+
+    .hero { position: relative; min-height: 760px; color: white; display: flex; align-items: flex-end; }
+    .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .hero .veil {
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(0,16,70,0.92) 0%, rgba(0,27,116,0.78) 46%, rgba(0,27,116,0.28) 100%);
+    }
+    .hero .wrap { position: relative; z-index: 1; padding: 120px 0 120px; }
+    .hero h1 { font-size: clamp(40px, 4.6vw, 64px); max-width: 16ch; margin: 14px 0 18px; }
+    .hero p { max-width: 58ch; color: rgba(255,255,255,0.9); font-size: 17px; font-weight: 400; }
+    .hero p + p { margin-top: 12px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+
+    .glance { position: relative; z-index: 2; margin-top: -64px; }
+    .glance-card {
+      background: white; border-top: 4px solid var(--red);
+      box-shadow: 0 18px 50px rgba(0, 27, 116, 0.12);
+      display: grid; grid-template-columns: 1.1fr repeat(3, 1fr);
+    }
+    .glance-card .intro { padding: 28px 28px; border-right: 1px solid var(--line); }
+    .glance-card h2 { font-size: 26px; color: var(--navy); }
+    .glance-card article { padding: 28px 18px; text-align: center; }
+    .glance-card article + article { border-left: 1px solid var(--line); }
+    .glance-card strong { display: block; font-size: 40px; color: var(--navy); line-height: 1; font-weight: 600; }
+    .glance-card span { color: var(--muted); font-size: 13px; }
+    .note { width: min(1180px, calc(100% - 40px)); margin: 10px auto 0; color: var(--muted); font-size: 12px; }
+
+    .logos { padding: 54px 0 20px; overflow: hidden; }
+    .logos h2 { text-align: center; color: var(--navy); font-size: 22px; margin-bottom: 22px; }
+    .marquee { overflow: hidden; }
+    .track { display: flex; gap: 16px; width: max-content; animation: drift 32s linear infinite; }
+    .marquee:hover .track { animation-play-state: paused; }
+    .logo-card {
+      width: 210px; height: 110px; background: white; border: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: center; padding: 16px;
+    }
+    .logo-card img { height: 52px; width: auto; max-width: 160px; object-fit: contain; }
+    @keyframes drift { to { transform: translateX(-50%); } }
+
+    section { padding: 88px 0; }
+    h2 { font-size: clamp(32px, 3.4vw, 46px); color: var(--navy); margin: 8px 0 14px; }
+    .lede { font-size: 17px; max-width: 68ch; color: #2c3850; }
+
+    .who { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 48px; align-items: center; }
+    .who img { width: 100%; height: 560px; object-fit: cover; }
+    .grid6 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 22px; margin-top: 26px; }
+    .grid6 article { border-top: 2px solid var(--red); padding-top: 10px; }
+    .grid6 h3 { font-size: 18px; color: var(--navy); margin-bottom: 4px; }
+    .grid6 p { color: var(--muted); font-size: 14px; }
+
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 26px 0 8px; }
+    .filters button {
+      border: 1px solid var(--line); background: white; color: var(--navy);
+      padding: 8px 12px; font-weight: 600; font-size: 13px; cursor: pointer;
+    }
+    .filters button[aria-pressed="true"] { background: var(--navy); color: white; border-color: var(--navy); }
+    .services { display: grid; gap: 12px; margin-top: 18px; }
+    .service {
+      display: grid; grid-template-columns: 72px 1fr auto; gap: 18px; align-items: center;
+      border: 1px solid var(--line); padding: 22px; background: white;
+    }
+    .service b { font-size: 22px; color: var(--red); }
+    .service h3 { font-size: 22px; color: var(--navy); }
+    .service p { color: var(--muted); font-size: 15px; margin-top: 4px; }
+    .service[hidden] { display: none; }
+    .linkish { background: none; border: 0; color: var(--red); font-weight: 600; cursor: pointer; font-size: 14px; padding: 0; }
+
+    .band { display: grid; grid-template-columns: 1fr 1fr; background: var(--navy); color: white; }
+    .band .copy { padding: 72px 56px; }
+    .band h2, .band .eyebrow { color: white; }
+    .band .eyebrow { color: #ffb4bc; }
+    .band li { margin: 8px 0 8px 18px; }
+    .band img { width: 100%; height: 100%; object-fit: cover; min-height: 420px; }
+
+    .finder { display: grid; grid-template-columns: 1.05fr 0.95fr; min-height: 560px; border: 1px solid var(--line); margin-top: 28px; background: white; }
+    .map {
+      position: relative; background:
+        radial-gradient(circle at 30% 40%, rgba(255,255,255,0.08), transparent 28%),
+        linear-gradient(160deg, #12348a, var(--navy));
+      min-height: 560px; color: white;
+    }
+    .map .label { position: absolute; left: 24px; top: 22px; letter-spacing: 0.16em; text-transform: uppercase; font-size: 12px; }
+    .pin {
+      position: absolute; width: 14px; height: 14px; border-radius: 50%; border: 0;
+      background: white; transform: translate(-50%, -50%); cursor: pointer;
+      box-shadow: 0 0 0 6px rgba(255,255,255,0.18);
+    }
+    .pin[aria-current="true"] { background: var(--red); box-shadow: 0 0 0 8px rgba(194,0,25,0.35); width: 16px; height: 16px; }
+    .pin-name { position: absolute; color: white; font-size: 13px; font-weight: 600; transform: translate(10px, -10px); pointer-events: none; }
+    .panel { display: flex; flex-direction: column; min-height: 560px; }
+    .panel .search { margin: 18px 18px 0; padding: 12px 14px; border: 1px solid var(--line); font-size: 15px; }
+    .places { list-style: none; overflow: auto; max-height: 220px; border-bottom: 1px solid var(--line); margin-top: 10px; }
+    .places button {
+      width: 100%; text-align: left; background: white; border: 0; border-bottom: 1px solid var(--line);
+      padding: 10px 18px; cursor: pointer;
+    }
+    .places button[aria-current="true"] { background: #fdecef; color: var(--red); }
+    .places small { display: block; color: var(--muted); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .office { padding: 22px 22px 8px; }
+    .office h3 { font-size: 36px; color: var(--navy); }
+    .office address { font-style: normal; margin-top: 6px; }
+    .office .phone { display: inline-block; margin-top: 8px; color: var(--red); font-weight: 600; }
+
+    .hseq { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; }
+    .hseq img { width: 100%; height: 460px; object-fit: cover; }
+
+    .news { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 14px; margin-top: 28px; }
+    .news article, .news a {
+      min-height: 240px; padding: 22px; background: var(--wash); display: flex; flex-direction: column; justify-content: flex-end;
+      border-top: 3px solid var(--navy);
+    }
+    .news a:first-child {
+      background: linear-gradient(transparent, rgba(0,16,70,0.82)), url("img/12-e8d26eb6.jpg") center/cover;
+      color: white; border-top-color: var(--red); min-height: 320px;
+    }
+    .news h3 { font-size: 24px; margin-top: 8px; }
+    .news a:first-child h3 { color: white; }
+
+    .careers { display: grid; grid-template-columns: 1.05fr 0.95fr; background: var(--navy); color: white; }
+    .careers .copy { padding: 72px 56px; display: flex; flex-direction: column; justify-content: center; }
+    .careers h2 { color: white; }
+    .careers img { width: 100%; height: 100%; object-fit: cover; min-height: 420px; }
+
+    .contact { background: var(--wash); }
+    form { display: grid; gap: 12px; margin-top: 8px; background: white; border-top: 4px solid var(--red); padding: 22px; }
+    label { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--navy); }
+    input, select, textarea { width: 100%; margin-top: 6px; padding: 12px; border: 1px solid var(--line); font-size: 15px; background: white; }
+    textarea { min-height: 90px; resize: vertical; }
+    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .contact-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 36px; align-items: start; }
+    .ok { background: #e8f6ee; border: 1px solid #b7e0c4; padding: 12px; }
+
+    footer { background: var(--navy-2); color: rgba(255,255,255,0.84); padding: 48px 0 22px; font-size: 14px; }
+    .foot { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 24px; }
+    footer img { height: 34px; width: auto; background: white; padding: 6px 8px; }
+    footer ul { list-style: none; margin-top: 8px; }
+    footer li + li { margin-top: 6px; }
+    footer a:hover { color: white; }
+    .legal { margin-top: 26px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.16); }
+
+    @media (max-width: 980px) {
+      .nav ul { display: none; }
+      .glance-card, .who, .band, .finder, .hseq, .news, .careers, .contact-grid, .foot, .two { grid-template-columns: 1fr; }
+      .service { grid-template-columns: 1fr; }
+      .hero { min-height: 640px; }
+      .hero .wrap { padding: 80px 0 100px; }
+      .band .copy, .careers .copy { padding: 40px 24px; }
+      .who img, .hseq img { height: 320px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .track { animation: none; flex-wrap: wrap; width: auto; justify-content: center; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="top">
+    <div class="util">
+      <div class="wrap">
+        <a href="#contact">Employee Portal</a>
+        <a href="#contact">Employment Verification</a>
+        <a href="#news">News &amp; Press Releases</a>
+        <span>English</span>
+      </div>
+    </div>
+    <header>
+      <div class="wrap nav">
+        <a class="brand" href="#top" aria-label="Brock Group home"><img src="img/logo.png" alt="Brock"></a>
+        <ul>
+          <li><a href="#top">Home</a></li>
+          <li><a href="#who">Who We Are</a></li>
+          <li><a href="#services">What We Do</a></li>
+          <li><a href="#work">Work With Us</a></li>
+          <li><a href="#hseq">HSEQ</a></li>
+          <li><a href="#news">Insights</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a class="btn btn-red" href="#services">Explore Our Services</a>
+      </div>
+    </header>
+  </div>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <img src="img/21-f1248100.jpg" alt="Industrial facility at night with a blue engineering overlay across the structure">
+      <div class="veil"></div>
+      <div class="wrap">
+        <p class="eyebrow">Industrial services. Engineered for excellence.</p>
+        <h1>Redefining what's possible in industrial services.</h1>
+        <p>From complex industrial construction to critical maintenance and turnaround projects, Brock delivers the people, expertise, and innovative solutions that help keep North America's industrial facilities operating safely and efficiently.</p>
+        <p>With a commitment to safety, quality, and execution excellence, we help our customers meet demanding project schedules and operational goals.</p>
+        <div class="hero-actions">
+          <a class="btn btn-red" href="#services">Explore Our Capabilities</a>
+          <a class="btn btn-line" href="#contact">Partner With Brock</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="glance" aria-label="Brock at a glance">
+      <div class="wrap glance-card">
+        <div class="intro">
+          <p class="eyebrow">Brock at a glance</p>
+          <h2>Built on experience. Driven by performance.</h2>
+        </div>
+        <article><strong data-count="75">75</strong><span>Years established</span></article>
+        <article><strong data-count="15000">15,000</strong><span>People across the organization</span></article>
+        <article><strong data-count="500">500</strong><span>Facilities across North America</span></article>
+      </div>
+      <p class="note">Figures as published on brockgroup.com. Confirm with Brock before this page is published.</p>
+    </div>
+
+    <div class="logos" aria-label="Customer logos">
+      <h2>On these customers' sites</h2>
+      <div class="marquee">
+        <div class="track">
+          <div class="logo-card"><img src="img/partners/01.jpg" alt="Dow"></div>
+          <div class="logo-card"><img src="img/partners/02.jpg" alt="International Paper"></div>
+          <div class="logo-card"><img src="img/partners/03.jpg" alt="Cenovus Energy"></div>
+          <div class="logo-card"><img src="img/partners/04.jpg" alt="Co-op"></div>
+          <div class="logo-card"><img src="img/partners/05.jpg" alt="Canadian Natural"></div>
+          <div class="logo-card"><img src="img/partners/06.jpg" alt="LNG Canada"></div>
+          <div class="logo-card"><img src="img/partners/01.jpg" alt=""></div>
+          <div class="logo-card"><img src="img/partners/02.jpg" alt=""></div>
+          <div class="logo-card"><img src="img/partners/03.jpg" alt=""></div>
+          <div class="logo-card"><img src="img/partners/04.jpg" alt=""></div>
+          <div class="logo-card"><img src="img/partners/05.jpg" alt=""></div>
+          <div class="logo-card"><img src="img/partners/06.jpg" alt=""></div>
+        </div>
+      </div>
+    </div>
+
+    <section id="who">
+      <div class="wrap who">
+        <img src="img/11-ce7bae2c.jpg" alt="Craft worker assembling scaffold on an industrial site">
+        <div>
+          <p class="eyebrow">Choose Brock. When results matter.</p>
+          <h2>A partner built around your priorities.</h2>
+          <p class="lede">Every industrial project has different challenges. Brock brings together a strong safety culture, experienced people, innovative technology, and proven processes to deliver solutions aligned with operational needs.</p>
+          <div class="grid6">
+            <article><h3>Culture of safety</h3><p>Safety is embedded in how every project is planned, executed, and evaluated.</p></article>
+            <article><h3>People and leadership</h3><p>Experienced teams and strong leadership help deliver dependable execution.</p></article>
+            <article><h3>Technology and innovation</h3><p>Modern tools, including Brock Pulse, support clearer planning and more efficient operations.</p></article>
+            <article><h3>Integrated services</h3><p>Several crafts on one plan, so a complex scope is easier to coordinate.</p></article>
+            <article><h3>Experience and expertise</h3><p>Practical knowledge for demanding environments and critical schedules.</p></article>
+            <article><h3>Processes and procedures</h3><p>Structured workflows and quality-focused practices, from the walkdown to the punch list.</p></article>
+          </div>
+          <div class="hero-actions"><a class="btn btn-navy" href="#services">Discover What Sets Brock Apart</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" style="background:var(--wash);padding-top:72px">
+      <div class="wrap">
+        <p class="eyebrow">Our services</p>
+        <h2>The right expertise. At every stage.</h2>
+        <p class="lede">Specialized industrial services for construction, maintenance, turnarounds, and facility operations. Filter by industry or project, then send that scope to the team.</p>
+        <div class="filters" role="toolbar" aria-label="Filter services">
+          <button type="button" data-filter="all" aria-pressed="true">All services</button>
+          <button type="button" data-filter="petrochemical">Petrochemical</button>
+          <button type="button" data-filter="refining">Refining</button>
+          <button type="button" data-filter="power">Power</button>
+          <button type="button" data-filter="pulp">Pulp &amp; paper</button>
+          <button type="button" data-filter="construction">Construction</button>
+          <button type="button" data-filter="maintenance">Maintenance</button>
+          <button type="button" data-filter="turnaround">Turnaround</button>
+        </div>
+        <div class="services" id="service-list"></div>
+        <div class="hero-actions"><button class="btn btn-navy" type="button" id="view-all">View All Services</button></div>
+      </div>
+    </section>
+
+    <section class="band" id="work">
+      <div class="copy">
+        <p class="eyebrow">Built for complex industrial operations</p>
+        <h2>One partner. Connected capabilities.</h2>
+        <p>Managing multiple contractors, project schedules, and specialized workforces can create unnecessary complexity. Brock brings complementary capabilities together so the customer can stay on the operational priority.</p>
+        <ul>
+          <li>Integrated multidisciplinary service capabilities</li>
+          <li>Safety-led project planning and execution</li>
+          <li>Experienced teams across North America</li>
+          <li>Solutions aligned with customer schedules and site requirements</li>
+        </ul>
+        <div class="hero-actions"><a class="btn btn-red" href="#contact">Discuss Your Project With Our Team</a></div>
+      </div>
+      <img src="img/08-74c56935.png" alt="Insulated industrial vessel beside scaffold and piping">
+    </section>
+
+    <section id="locations">
+      <div class="wrap">
+        <p class="eyebrow">A North American network. Local execution.</p>
+        <h2>Strategically positioned to support your operations.</h2>
+        <p class="lede">Merit and union specialty multi-craft services across the United States and Canada. Search a city, or choose a point on the map, and the office opens with a way to reach that team.</p>
+        <div class="finder">
+          <div class="map" id="map"><p class="label">United States and Canada</p></div>
+          <div class="panel">
+            <label for="q" class="sr" style="position:absolute;left:-999px">Search locations</label>
+            <input class="search" id="q" type="search" placeholder="Search Houston, Geismar, Maine…">
+            <ul class="places" id="places"></ul>
+            <div class="office" id="office" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="hseq" style="background:var(--wash)">
+      <div class="wrap hseq">
+        <div>
+          <p class="eyebrow">Safety, quality, and responsibility</p>
+          <h2>Every project begins with a commitment to safety.</h2>
+          <p class="lede">Established safety protocols, experienced leadership, time-tested procedures, and a commitment to quality. From planning through execution, the work is to build trust and deliver a dependable outcome.</p>
+          <div class="hero-actions"><a class="btn btn-navy" href="#contact">Learn About Our HSEQ Commitment</a></div>
+        </div>
+        <img src="img/14-50824c42.jpg" alt="Supervisor reviewing paperwork beside process equipment">
+      </div>
+    </section>
+
+    <section id="news">
+      <div class="wrap">
+        <p class="eyebrow">Brock today</p>
+        <h2>The latest from Brock.</h2>
+        <p class="lede">Company news, project updates, and developments across the organization.</p>
+        <div class="news">
+          <a href="https://www.brockgroup.com/post/brock-group-relocates-headquarters-to-houston-s-energy-corridor">
+            <span class="eyebrow">Company news</span>
+            <h3>Brock moves its headquarters to Houston’s Energy Corridor.</h3>
+          </a>
+          <article>
+            <span class="eyebrow">Leadership</span>
+            <h3>Warren Smith and Mario Garza take key Texas roles.</h3>
+          </article>
+          <article>
+            <span class="eyebrow">Sales</span>
+            <h3>Jude Taylor leads North American sales and marketing.</h3>
+          </article>
+        </div>
+        <div class="hero-actions"><a class="btn btn-navy" href="https://www.brockgroup.com/">View All News &amp; Insights</a></div>
+      </div>
+    </section>
+
+    <section class="careers" id="careers">
+      <div class="copy">
+        <p class="eyebrow">Careers at Brock</p>
+        <h2>Build your future with Brock.</h2>
+        <p style="max-width:46ch;margin-bottom:22px">Skilled professionals, strong leadership, and a commitment to safety, on complex work across North America.</p>
+        <div class="hero-actions">
+          <a class="btn btn-red" href="#contact">Explore Careers</a>
+          <a class="btn btn-line" href="#who">Meet the Brock Team</a>
+        </div>
+      </div>
+      <img src="img/13-0090c33f.jpg" alt="Field leader reviewing drawings on site">
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="wrap contact-grid">
+        <div>
+          <p class="eyebrow">Let's build a better way forward.</p>
+          <h2>Tell us the project.</h2>
+          <p class="lede">A turnaround, ongoing maintenance, or a specialty scope. The note takes the service, the location, and the project type so it can reach the right team.</p>
+          <p class="lede" style="margin-top:16px"><strong>833.462.7625</strong><br>777 N. Eldridge Pkwy, Suite 900<br>Houston, TX 77079</p>
+        </div>
+        <form id="inquiry">
+          <div class="two">
+            <div><label for="name">Name</label><input id="name" name="name" required autocomplete="name"></div>
+            <div><label for="phone">Phone</label><input id="phone" name="phone" type="tel" required autocomplete="tel"></div>
+          </div>
+          <div><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email"></div>
+          <div class="two">
+            <div>
+              <label for="service">Service need</label>
+              <select id="service" name="service">
+                <option>Soft-Craft Services</option>
+                <option>General Mechanical</option>
+                <option>Technical Services</option>
+                <option>Safety Services</option>
+                <option>Fabrication Services</option>
+              </select>
+            </div>
+            <div>
+              <label for="industry">Industry</label>
+              <select id="industry" name="industry">
+                <option>Petrochemical</option>
+                <option>Refining</option>
+                <option>Power generation</option>
+                <option>Pulp &amp; paper</option>
+                <option>Manufacturing</option>
+                <option>Infrastructure</option>
+              </select>
+            </div>
+          </div>
+          <div class="two">
+            <div>
+              <label for="ptype">Project type</label>
+              <select id="ptype" name="ptype">
+                <option>Turnaround</option>
+                <option>Maintenance</option>
+                <option>Construction</option>
+                <option>Specialty scope</option>
+              </select>
+            </div>
+            <div>
+              <label for="location">Location</label>
+              <select id="location" name="location"></select>
+            </div>
+          </div>
+          <div><label for="details">Project details</label><textarea id="details" name="details" required></textarea></div>
+          <button class="btn btn-red" type="submit">Contact Our Team</button>
+          <p class="ok" id="sent" hidden></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <div>
+        <img src="img/logo.png" alt="Brock">
+        <p style="margin-top:14px;max-width:36ch">Industrial services delivered with a commitment to safety, quality, and execution excellence.</p>
+      </div>
+      <div>
+        <strong>Explore</strong>
+        <ul>
+          <li><a href="#who">Who We Are</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#locations">Locations</a></li>
+          <li><a href="#hseq">HSEQ</a></li>
+          <li><a href="#careers">Careers</a></li>
+          <li><a href="#news">News</a></li>
+        </ul>
+      </div>
+      <div>
+        <strong>Quick access</strong>
+        <ul>
+          <li><a href="#contact">Employee Portal</a></li>
+          <li><a href="#contact">Employment Verification</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="tel:8334627625">833.462.7625</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="wrap legal">
+      <p>Terms &amp; Conditions for Sales, Services and Rentals (US &amp; CA) · Terms &amp; Conditions for Purchasing (US &amp; CA) · Privacy Policy</p>
+      <p style="margin-top:8px">Brock Group is an Equal Opportunity Employer.<br>© 2026 Brock Group. Homepage concept for discussion.</p>
+    </div>
+  </footer>
+
+  <script>
+    var services = [
+      ["01", "Soft-Craft Services", "Industrial insulation, scaffolding, coatings, and related services that support asset protection, workforce access, and facility performance.", "petrochemical refining power pulp construction maintenance turnaround"],
+      ["02", "General Mechanical", "Mechanical and multidisciplinary craft capabilities supporting industrial construction, maintenance, and turnaround requirements.", "petrochemical refining power construction maintenance turnaround"],
+      ["03", "Technical Services", "Specialized technical expertise to support planning, project execution, inspection, and operational requirements.", "petrochemical refining power pulp construction turnaround"],
+      ["04", "Safety Services", "Safety-focused services and practices designed to help protect people, assets, and worksites.", "petrochemical refining power pulp construction maintenance turnaround"],
+      ["05", "Fabrication Services", "Fabrication capabilities that support industrial projects with fit-for-purpose components and coordinated execution.", "petrochemical refining construction turnaround"]
+    ];
+    var serviceList = document.getElementById("service-list");
+    services.forEach(function (s) {
+      var row = document.createElement("article");
+      row.className = "service";
+      row.dataset.tags = s[3];
+      row.innerHTML = "<b>" + s[0] + "</b><div><h3>" + s[1] + "</h3><p>" + s[2] + "</p></div>";
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "linkish";
+      btn.textContent = "Explore " + s[1].replace(" Services", "").replace("General ", "");
+      btn.addEventListener("click", function () {
+        document.getElementById("service").value = s[1];
+        document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+        document.getElementById("details").focus();
+      });
+      row.appendChild(btn);
+      serviceList.appendChild(row);
+    });
+    document.querySelectorAll(".filters button").forEach(function (chip) {
+      chip.addEventListener("click", function () {
+        document.querySelectorAll(".filters button").forEach(function (b) { b.setAttribute("aria-pressed", "false"); });
+        chip.setAttribute("aria-pressed", "true");
+        var key = chip.dataset.filter;
+        document.querySelectorAll(".service").forEach(function (row) {
+          row.hidden = key !== "all" && row.dataset.tags.indexOf(key) === -1;
+        });
+      });
+    });
+    document.getElementById("view-all").addEventListener("click", function () {
+      document.querySelector('.filters button[data-filter="all"]').click();
+    });
+
+    var offices = [
+      ["Houston, TX", "Headquarters", "777 N. Eldridge Pkwy, Suite 900, Houston, TX 77079", 46, 70],
+      ["Deer Park, TX", "Gulf Coast", "4440 SH 225, Deer Park, TX 77536", 50, 66],
+      ["Corpus Christi, TX", "Gulf Coast", "353 Lantana Street, Corpus Christi, TX 78408", 42, 80],
+      ["Clute, TX", "Gulf Coast", "431 Commerce Street, Clute, TX 77531", 47, 76],
+      ["Beaumont, TX", "Gulf Coast", "1670 E Cardinal Drive, Beaumont, TX 77705", 54, 68],
+      ["Geismar, LA", "Gulf Coast", "36302 Highway 30, Geismar, LA 70734", 58, 72],
+      ["Sulphur, LA", "Gulf Coast", "3747 South Beglis Pkwy, Suite 200, Sulphur, LA 70666", 55, 78],
+      ["Gautier, MS", "Gulf Coast", "341 Highway 90, Suite A, Gautier, MS 39553", 62, 74],
+      ["Ft. Collins, CO", "Rockies", "1118 NE Frontage Road, Ft. Collins, CO 80524", 30, 44],
+      ["Hazen, ND", "Plains", "104 12th Avenue NW, Suite 2, Hazen, ND 58545", 38, 30],
+      ["Morris, IL", "Midwest", "1536 Creek Drive, Morris, IL 60450", 58, 42],
+      ["Memphis, TN", "Mid-South", "2876 Directors Cove, Memphis, TN 38131", 56, 58],
+      ["Kingsport, TN", "Mid-South", "1801 Warrick Dr., Kingsport, TN 37660", 66, 54],
+      ["Baltimore, MD", "Mid-Atlantic", "8124 Norris Lane, Baltimore, MD 21222", 76, 44],
+      ["Proctor, WV", "Mid-Atlantic", "15696 Energy Rd., Proctor, WV 26055", 70, 48],
+      ["Pineville, NC", "Southeast", "521 Eagleton Downs, Suite C, Pineville, NC 28134", 72, 58],
+      ["Auburn, ME", "Northeast", "416 Lewiston Junction Rd, Auburn, ME 04210", 86, 30],
+      ["Gorham, ME", "Northeast", "9 Laurence Drive, Gorham, ME 04038", 84, 34],
+      ["Westford, MA", "Northeast", "2 Lan Drive, Westford, MA 01886", 80, 38]
+    ];
+    var locSelect = document.getElementById("location");
+    var list = document.getElementById("places");
+    var office = document.getElementById("office");
+    var map = document.getElementById("map");
+    offices.forEach(function (o) {
+      var opt = document.createElement("option");
+      opt.textContent = o[0];
+      locSelect.appendChild(opt);
+    });
+    function show(i) {
+      var o = offices[i];
+      office.innerHTML = "<p class='eyebrow'>" + o[1] + "</p><h3>" + o[0].split(",")[0] + "</h3><address>" + o[2] + "</address><a class='phone' href='tel:8334627625'>833.462.7625</a><div style='margin-top:14px'><button class='btn btn-red' type='button' id='use-loc'>Contact this team</button></div>";
+      document.getElementById("use-loc").addEventListener("click", function () {
+        locSelect.value = o[0];
+        document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+      });
+      list.querySelectorAll("button").forEach(function (b) {
+        b.setAttribute("aria-current", b.dataset.i === String(i) ? "true" : "false");
+      });
+      map.querySelectorAll(".pin").forEach(function (p) {
+        p.setAttribute("aria-current", p.dataset.i === String(i) ? "true" : "false");
+      });
+      var name = map.querySelector(".pin-name");
+      if (!name) { name = document.createElement("span"); name.className = "pin-name"; map.appendChild(name); }
+      name.style.left = o[3] + "%";
+      name.style.top = o[4] + "%";
+      name.textContent = o[0].split(",")[0];
+    }
+    function render(q) {
+      list.innerHTML = "";
+      offices.forEach(function (o, i) {
+        if (q && (o[0] + o[1] + o[2]).toLowerCase().indexOf(q) === -1) return;
+        var li = document.createElement("li");
+        var b = document.createElement("button");
+        b.type = "button";
+        b.dataset.i = String(i);
+        b.innerHTML = o[0] + "<small>" + o[1] + "</small>";
+        b.addEventListener("click", function () { show(i); });
+        li.appendChild(b);
+        list.appendChild(li);
+      });
+      if (!list.children.length) list.innerHTML = "<li style='padding:14px 18px;color:#5c677a'>No office matches. Call 833.462.7625.</li>";
+    }
+    offices.forEach(function (o, i) {
+      var pin = document.createElement("button");
+      pin.type = "button";
+      pin.className = "pin";
+      pin.dataset.i = String(i);
+      pin.style.left = o[3] + "%";
+      pin.style.top = o[4] + "%";
+      pin.setAttribute("aria-label", o[0]);
+      pin.addEventListener("click", function () { show(i); });
+      map.appendChild(pin);
+    });
+    render("");
+    show(0);
+    document.getElementById("q").addEventListener("input", function (e) {
+      render(e.target.value.trim().toLowerCase());
+    });
+
+    document.getElementById("inquiry").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var data = new FormData(e.target);
+      var note = document.getElementById("sent");
+      note.hidden = false;
+      note.textContent = "Ready for " + data.get("service") + " · " + data.get("ptype") + " · " + data.get("location") + ". On the live site this routes to that team.";
+    });
+
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!reduce) {
+      var seen = false;
+      var nums = document.querySelectorAll("[data-count]");
+      function run() {
+        if (seen) return;
+        var box = document.querySelector(".glance");
+        if (box.getBoundingClientRect().top > window.innerHeight) return;
+        seen = true;
+        nums.forEach(function (el) {
+          var target = Number(el.dataset.count);
+          var start = 0;
+          var step = Math.max(1, Math.round(target / 40));
+          var tick = setInterval(function () {
+            start += step;
+            if (start >= target) { start = target; clearInterval(tick); }
+            el.textContent = start.toLocaleString("en-US");
+          }, 20);
+        });
+      }
+      window.addEventListener("scroll", run, { passive: true });
+      run();
+    }
+  </script>
+</body>
+</html>
